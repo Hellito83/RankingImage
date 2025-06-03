@@ -6,7 +6,7 @@
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <style>
     body {
-      background-color: #0d0d0d;
+      background-color: #2c1f1a;
       color: #ffffff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding: 40px;
@@ -21,30 +21,35 @@
     h2 {
       text-align: center;
       color: #ff66cc;
-      font-size: 28px;
-      margin-bottom: 40px;
+      font-size: 26px;
+      letter-spacing: 1px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
     }
     .ranking-table {
       width: 100%;
       border-collapse: collapse;
     }
     .ranking-table th {
-      background-color: #1a1a1a;
+      background-color: #1e1612;
       color: #ff66cc;
-      font-size: 14px;
-      padding: 10px;
+      font-size: 13px;
+      padding: 10px 8px;
       text-align: left;
+      text-transform: uppercase;
     }
     .ranking-table td {
-      background-color: #1f1f1f;
-      padding: 10px;
-      font-size: 14px;
+      background-color: #2a1b16;
+      padding: 10px 8px;
+      font-size: 13px;
       color: #ffffff;
     }
     .bar-container {
-      background-color: #333;
-      height: 20px;
+      background-color: #444;
+      height: 18px;
       position: relative;
+      border-radius: 3px;
+      overflow: hidden;
     }
     .bar {
       background-color: #ff66cc;
@@ -54,8 +59,8 @@
       position: absolute;
       right: 10px;
       top: 0;
-      font-size: 12px;
-      line-height: 20px;
+      font-size: 11px;
+      line-height: 18px;
       color: #ffffff;
     }
   </style>
@@ -70,7 +75,7 @@
   <table class="ranking-table">
     <thead>
       <tr>
-        <th>Posición</th>
+        <th>#</th>
         <th>Nickname</th>
         <th>Nombre</th>
         <th>Puntos</th>
@@ -81,7 +86,7 @@
   </table>
 
   <script>
-    const excelUrl = "Ranking.xlsx"; // Asegúrate de mantener esta mayúscula
+    const excelUrl = "Ranking.xlsx";
 
     fetch(excelUrl)
       .then(response => response.arrayBuffer())
