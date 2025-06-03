@@ -6,43 +6,82 @@
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <style>
     body {
-      font-family: sans-serif;
-      padding: 20px;
+      background-color: #0d0d0d;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 40px;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo img {
+      max-width: 200px;
     }
     h2 {
       text-align: center;
+      color: #ff66cc;
+      font-size: 28px;
+      margin-bottom: 40px;
     }
-    table {
+    .ranking-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
     }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: center;
+    .ranking-table th {
+      background-color: #1a1a1a;
+      color: #ff66cc;
+      font-size: 14px;
+      padding: 10px;
+      text-align: left;
     }
-    th {
-      background-color: #f5f5f5;
+    .ranking-table td {
+      background-color: #1f1f1f;
+      padding: 10px;
+      font-size: 14px;
+      color: #ffffff;
+    }
+    .bar-container {
+      background-color: #333;
+      height: 20px;
+      position: relative;
+    }
+    .bar {
+      background-color: #ff66cc;
+      height: 100%;
+    }
+    .bar-label {
+      position: absolute;
+      right: 10px;
+      top: 0;
+      font-size: 12px;
+      line-height: 20px;
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
+  <div class="logo">
+    <img src="https://www.imagetours.es/Content/Images/logo.png" alt="Logo Image Tours">
+  </div>
+
   <h2>Top 10 Agencias por Puntos</h2>
-  <table>
+
+  <table class="ranking-table">
     <thead>
       <tr>
         <th>Posición</th>
         <th>Nickname</th>
         <th>Nombre</th>
         <th>Puntos</th>
+        <th>Visual</th>
       </tr>
     </thead>
     <tbody id="tabla-ranking"></tbody>
   </table>
 
   <script>
-    const excelUrl = "https://docs.google.com/spreadsheets/d/1X_vkXpBUqyZWYUxcx_lfIOEFTSP3rVKm/export?format=xlsx";
+    const excelUrl = "Ranking.xlsx"; // Asegúrate de mantener esta mayúscula
 
     fetch(excelUrl)
       .then(response => response.arrayBuffer())
@@ -52,22 +91,30 @@
         const filas = XLSX.utils.sheet_to_json(sheet, { defval: "" });
 
         const top10 = filas.slice(0, 10);
-        const tbody = document.getElementById("tabla-ranking");
+        const maxPuntos = Math.max(...top10.map(r => parseInt(r.Puntos)));
 
+        const tbody = document.getElementById("tabla-ranking");
         top10.forEach(row => {
+          const porcentaje = (parseInt(row.Puntos) / maxPuntos) * 100;
           const tr = document.createElement("tr");
           tr.innerHTML = `
             <td>${row.Posición}</td>
             <td>${row.Nickname}</td>
             <td>${row.nombre}</td>
             <td>${row.Puntos}</td>
+            <td>
+              <div class="bar-container">
+                <div class="bar" style="width:${porcentaje}%"></div>
+                <div class="bar-label">${porcentaje.toFixed(1)}%</div>
+              </div>
+            </td>
           `;
           tbody.appendChild(tr);
         });
       })
       .catch(err => {
         console.error("Error cargando el archivo Excel:", err);
-        document.getElementById("tabla-ranking").innerHTML = "<tr><td colspan='4'>Error al cargar el archivo.</td></tr>";
+        document.getElementById("tabla-ranking").innerHTML = "<tr><td colspan='5'>Error al cargar el archivo.</td></tr>";
       });
   </script>
 </body>
