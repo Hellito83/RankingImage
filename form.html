@@ -77,24 +77,27 @@
 
   <h2>Registro de Participación</h2>
 
-  <form action="send.php" method="POST">
+  <form action="https://formsubmit.co/vteruel@imagetours.es" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://imagetours.es/gracias.html">
+
     <label for="nombre">Nombre y apellidos del agente:</label>
-    <input type="text" id="nombre" name="nombre" required>
+    <input type="text" id="nombre" name="Nombre y apellidos" required>
 
     <label for="nickname">Nickname*:</label>
-    <input type="text" id="nickname" name="nickname" required>
+    <input type="text" id="nickname" name="Nickname" required>
 
     <label for="agencia">Nombre Agencia de Viajes:</label>
-    <input type="text" id="agencia" name="agencia" required>
+    <input type="text" id="agencia" name="Nombre Agencia" required>
 
     <label for="cif">CIF Agencia de Viajes:</label>
-    <input type="text" id="cif" name="cif" required>
+    <input type="text" id="cif" name="CIF Agencia" required>
 
     <label for="telefono">Teléfono:</label>
-    <input type="text" id="telefono" name="telefono" required>
+    <input type="text" id="telefono" name="Teléfono" required>
 
     <label for="email">E-mail:</label>
-    <input type="email" id="email" name="email" required>
+    <input type="email" id="email" name="E-mail" required>
 
     <input type="submit" value="Enviar registro">
   </form>
