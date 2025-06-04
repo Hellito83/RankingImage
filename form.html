@@ -1,11 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registro al Ranking</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
+  <title>Registro de Agente</title>
   <style>
     body {
       background-color: #1c1e22;
@@ -22,51 +20,58 @@
     }
     h2 {
       color: #ff66cc;
-      font-size: 26px;
-      letter-spacing: 1px;
+      font-size: 24px;
       margin-bottom: 30px;
-      text-transform: uppercase;
     }
     form {
-      width: 80%;
-      max-width: 600px;
-      margin: auto;
-      background-color: #26282d;
-      padding: 30px;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      width: 90%;
+      max-width: 700px;
+      margin: 0 auto;
       text-align: left;
     }
     label {
       display: block;
       margin-top: 15px;
-      margin-bottom: 5px;
-      font-weight: bold;
+      color: #ffaaee;
+      font-size: 14px;
     }
-    input[type="text"], input[type="email"] {
+    input, textarea {
       width: 100%;
       padding: 10px;
+      margin-top: 5px;
+      background-color: #2d2f36;
       border: none;
       border-radius: 4px;
-      background-color: #1e1f24;
-      color: #fff;
+      color: #ffffff;
+      font-size: 14px;
     }
-    input[type="submit"] {
-      background-color: #ff66cc;
-      color: white;
+    input:focus, textarea:focus {
+      outline: 2px solid #ff66cc;
+    }
+    button {
+      margin-top: 25px;
       padding: 12px 20px;
+      background-color: #ff66cc;
+      color: #fff;
+      font-size: 16px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
-      margin-top: 20px;
     }
-    input[type="submit"]:hover {
-      background-color: #e055b8;
+    button:hover {
+      background-color: #ff4ab5;
     }
-    .footer-note {
-      font-size: 11px;
-      color: #ffaa33;
-      margin-top: 40px;
+    .pdf-frame {
+      display: flex;
+      justify-content: center;
+      margin-top: 60px;
+    }
+    iframe {
+      width: 60%;
+      height: 500px;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      border-radius: 4px;
     }
   </style>
 </head>
@@ -75,41 +80,33 @@
     <img src="https://www.imagetours.es/Content/Images/logo.png" alt="Logo Image Tours">
   </div>
 
-  <h2>Registro de Participación</h2>
+  <h2>Formulario de Registro</h2>
 
-  <form action="https://formsubmit.co/imagevictor@gmail.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://imagetours.es/gracias.html">
+  <form action="https://formsubmit.co/imagevictor@gmail.com" method="POST" target="_blank">
+    <label for="name">Nombre y apellidos del agente:</label>
+    <input type="text" id="name" name="Nombre y apellidos del agente" required>
 
-    <label for="nombre">Nombre y apellidos del agente:</label>
-    <input type="text" id="nombre" name="Nombre y apellidos" required>
-
-    <label for="nickname">Nickname*:</label>
+    <label for="nickname">Nickname (será público en el ranking):</label>
     <input type="text" id="nickname" name="Nickname" required>
 
     <label for="agencia">Nombre Agencia de Viajes:</label>
-    <input type="text" id="agencia" name="Nombre Agencia" required>
+    <input type="text" id="agencia" name="Nombre Agencia de Viajes" required>
 
     <label for="cif">CIF Agencia de Viajes:</label>
-    <input type="text" id="cif" name="CIF Agencia" required>
+    <input type="text" id="cif" name="CIF Agencia de Viajes" required>
 
     <label for="telefono">Teléfono:</label>
-    <input type="text" id="telefono" name="Teléfono" required>
+    <input type="tel" id="telefono" name="Teléfono" required>
 
-    <label for="email">E-mail:</label>
-    <input type="email" id="email" name="E-mail" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="Email" required>
 
-    <input type="submit" value="Enviar registro">
+    <input type="hidden" name="_next" value="gracias.html">
+    <button type="submit">Enviar registro</button>
   </form>
 
-  <div class="footer-note">
-    *El campo Nickname será público y podrá aparecer en el ranking visible en la web.
-  </div>
-
-  <h3 style="margin-top: 60px; font-size: 18px; color: #ff66cc; letter-spacing: 1px;">Bases del Ranking</h3>
-
-  <div style="display: flex; justify-content: center; margin-top: 15px;">
-    <iframe src="bases.pdf" width="60%" height="500px" style="border: none; box-shadow: 0 0 10px rgba(0,0,0,0.5); border-radius: 4px;"></iframe>
+  <div class="pdf-frame">
+    <iframe src="bases.pdf"></iframe>
   </div>
 </body>
 </html>
