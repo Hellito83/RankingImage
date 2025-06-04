@@ -71,21 +71,11 @@
       color: #ffaa33;
       margin-top: 40px;
     }
-    .register-button {
-      display: inline-block;
+    .register-image {
+      display: block;
       margin: 30px auto;
-      padding: 12px 20px;
-      background-color: #ff66cc;
-      color: #fff;
-      font-size: 14px;
-      border: none;
-      border-radius: 4px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .register-button:hover {
-      background-color: #ff4ab5;
+      width: 75%;
+      max-width: 600px;
     }
   </style>
 </head>
@@ -100,7 +90,9 @@
     El ranking se actualiza cada lunes durante la vigencia de la promoción.
   </div>
 
-  <a class="register-button" href="form.html">Registrarse como participante</a>
+  <a href="form.html">
+    <img src="ranking.png" alt="Registrarse en el ranking" class="register-image">
+  </a>
 
   <div class="ranking-wrapper">
     <table class="ranking-table">
@@ -119,11 +111,11 @@
     Fuente: Ranking interno de agencias Image Tours.
   </div>
 
- <h3 style="margin-top: 60px; font-size: 18px; color: #ff66cc; letter-spacing: 1px;">Bases del Ranking</h3>
+  <h3 style="margin-top: 60px; font-size: 18px; color: #ff66cc; letter-spacing: 1px;">Bases del Ranking</h3>
 
-<div style="display: flex; justify-content: center; margin-top: 15px;">
-  <iframe src="bases.pdf" width="60%" height="500px" style="border: none; box-shadow: 0 0 10px rgba(0,0,0,0.5); border-radius: 4px;"></iframe>
-</div>
+  <div style="display: flex; justify-content: center; margin-top: 15px;">
+    <iframe src="bases.pdf" width="60%" height="500px" style="border: none; box-shadow: 0 0 10px rgba(0,0,0,0.5); border-radius: 4px;"></iframe>
+  </div>
 
   <script>
     const excelUrl = "Ranking.xlsx";
@@ -135,7 +127,7 @@
         const sheet = workbook.Sheets[workbook.SheetNames[0]];
         const filas = XLSX.utils.sheet_to_json(sheet, { defval: "" });
 
-        const top10 = filas.slice(0, 10); // ignoramos encabezado y mostramos hasta 10
+        const top10 = filas.slice(0, 10);
         const tbody = document.getElementById("tabla-ranking");
 
         top10.forEach(row => {
